@@ -18,6 +18,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnRegister;
     private Button btnCancel;
 
+    private Database userbase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,5 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerFullName = findViewById(R.id.registerFullName);
         btnRegister = findViewById(R.id.btnRegister);
         btnCancel = findViewById(R.id.btnCancel);
+
+        userbase = new Database(RegisterActivity.this);
     }
 }

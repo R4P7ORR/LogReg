@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
     private static final String DB_Name = "Userbase.db";
     private static final int DB_Version = 1;
+    private static final String tableName = "USERDATA";
     private static final String id = "id";
     private static final String email = "email";
     private static final String username = "username";
@@ -19,8 +20,8 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "CREATE TABLE " + "USERDATA" + " (" +
-                id + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+        String sql = "CREATE TABLE " + tableName + " (" +
+                id + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 email + " TEXT NOT NULL, " +
                 username + " TEXT NOT NULL, " +
                 password + " TEXT NOT NULL, " +
@@ -30,6 +31,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + tableName);
+        onCreate(sqLiteDatabase);
     }
 }
