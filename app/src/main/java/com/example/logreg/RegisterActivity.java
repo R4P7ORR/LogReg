@@ -28,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tryRegister();
+                checkRegister();
             }
         });
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void tryRegister(){
+    public void checkRegister(){
         if (registerEmail.getText().toString().isEmpty()){
             Toast.makeText(this,"Az email cím mezője nem lehet üres!", Toast.LENGTH_LONG).show();
         } else if (registerUsername.getText().toString().isEmpty()) {
@@ -51,10 +51,16 @@ public class RegisterActivity extends AppCompatActivity {
         } else if (registerFullName.getText().toString().isEmpty()) {
             Toast.makeText(this,"A teljes név mezője nem lehet üres!", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this,"Sikeres regisztráció!", Toast.LENGTH_LONG).show();
-            Intent toMain = new Intent(RegisterActivity.this, MainActivity.class);
-            startActivity(toMain);
-            finish();
+            tryRegister();
+        }
+    }
+
+    public void tryRegister(){
+        if (userbase.dataPush(registerEmail.getText().toString(), registerUsername.getText().toString(),
+                registerPassword.getText().toString(), registerFullName.getText().toString())){
+            Toast.makeText(this, "Sikeres regisztráció!", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, "Sikertelen regisztráció!", Toast.LENGTH_LONG).show();
         }
     }
 
