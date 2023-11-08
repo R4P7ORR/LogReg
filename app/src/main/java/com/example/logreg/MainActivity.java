@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     .equals(loginName.getText().toString())) && user.getString(3).equals(loginPassword.getText().toString())) {
                 foundInDb = true;
                 Intent toLogin = new Intent(MainActivity.this, LoggedInActivity.class);
+                toLogin.putExtra("userL", user.getString(4));
                 startActivity(toLogin);
                 finish();
                 break;

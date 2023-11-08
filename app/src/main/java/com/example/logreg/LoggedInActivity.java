@@ -28,7 +28,9 @@ public class LoggedInActivity extends AppCompatActivity {
     }
 
     public void init(){
+        Intent recieveData = getIntent();
         loggedUser = findViewById(R.id.loggedUser);
         btnLogout = findViewById(R.id.btnLogout);
+        loggedUser.setText(recieveData.getStringExtra("userL"));
     }
 }
